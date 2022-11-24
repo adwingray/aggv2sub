@@ -15,7 +15,7 @@
         poetry2nix.overlay
         (final: prev: {
           # The application
-          myapp = prev.poetry2nix.mkPoetryApplication {
+          aggv2sub = prev.poetry2nix.mkPoetryApplication {
             projectDir = ./.;
             overrides = prev.poetry2nix.overrides.withDefaults (
               pyfinal: pyprev: {
@@ -38,13 +38,13 @@
         packageName = "aggv2sub";
       in
       {
-        apps.${packageName} = pkgs.myapp;
+        apps.${packageName} = pkgs.${packageName};
 
-        defaultApp = pkgs.myapp;
+        defaultApp = pkgs.${packageName};
 
-        packages.${packageName} = pkgs.myapp;
+        packages.${packageName} = pkgs.${packageName};
 
-        defaultPackage = pkgs.myapp;
+        defaultPackage = pkgs.${packageName};
 
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
